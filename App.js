@@ -35,7 +35,10 @@ function addToCart(product, quantity = 1) {
   if (existing) existing.quantity += qty;
   else cart.push({ productId: product.id, name: product.name, price: Number(product.price ?? 0), description: product.description ?? '', image: product.image ?? '', quantity: qty });
 }
-
+function updateCartItemQuantity(productId, quantity) {
+  const qty = Number(quantity);
+  cart = cart.map((x) => (x.productId === productId ? { ...x, quantity: qty } : x)).filter((x) => x.quantity > 0);
+}
 // Firestore services
 const PRODUCTS_COLLECTION = 'Products';
 const ORDERS_COLLECTION = 'Orders';
