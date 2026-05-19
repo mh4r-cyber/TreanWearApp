@@ -42,7 +42,8 @@ function updateCartItemQuantity(productId, quantity) {
 function removeFromCart(productId) { cart = cart.filter((x) => x.productId !== productId); }
 function getCartTotal() { return cart.reduce((s, x) => s + x.price * x.quantity, 0); }
 }
-
+function setCurrentCustomer(user) { currentCustomer = user ?? null; }
+function getCurrentCustomer() { return currentCustomer; }
 // Firestore services
 const PRODUCTS_COLLECTION = 'Products';
 const ORDERS_COLLECTION = 'Orders';
