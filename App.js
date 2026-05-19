@@ -39,6 +39,10 @@ function updateCartItemQuantity(productId, quantity) {
   const qty = Number(quantity);
   cart = cart.map((x) => (x.productId === productId ? { ...x, quantity: qty } : x)).filter((x) => x.quantity > 0);
 }
+function removeFromCart(productId) { cart = cart.filter((x) => x.productId !== productId); }
+function getCartTotal() { return cart.reduce((s, x) => s + x.price * x.quantity, 0); }
+}
+
 // Firestore services
 const PRODUCTS_COLLECTION = 'Products';
 const ORDERS_COLLECTION = 'Orders';
